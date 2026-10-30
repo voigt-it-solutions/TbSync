@@ -92,13 +92,15 @@ nothing left to do until the next Thunderbird release breaks compatibility.
    yet in `compat`. Check that the diff touches nothing beyond compatibility,
    and note in the table above what was taken.
 3. Bring the commits into `compat` (`git fetch upstream pull/<n>/head`, then
-   cherry-pick or rebase onto them, keeping our own commit last).
+   cherry-pick or rebase onto them, keeping our own commits last).
 4. Bump the version in `package.json`, run `node build.js` so it reaches
-   `src/manifest.json`, and run the tests:
-   - TbSync: `npm test`
+   `src/manifest.json`, and run the tests with `TZ=Europe/Berlin`. Three
+   upstream EAS-4-TbSync tests assume that timezone and fail under UTC, on
+   the unmodified upstream release too.
+   - TbSync: `TZ=Europe/Berlin npm test`
    - EAS-4-TbSync: the command in `.github/workflows/compat-release.yml`,
-     which skips the one test that also fails on the unmodified upstream
-     release.
+     which also skips the one test that fails on the unmodified upstream
+     release in any timezone.
 5. Update `compat-updates.json`: both versions, both links,
    `strict_max_version`.
 6. Commit, push `compat` in both repos, then tag and push the tags:
