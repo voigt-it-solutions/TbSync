@@ -9,9 +9,9 @@
     }
   },
   "name": "TbSync Manager",
-  "version": "5.3.8.3",
+  "version": "5.3.8.4",
   "author": "John Bieling",
-  "homepage_url": "https://github.com/jobisoft/TbSync",
+  "homepage_url": "https://github.com/voigt-it-solutions/TbSync",
   "default_locale": "en-US",
   "description": "__MSG_extensionDescription__",
   "icons": {

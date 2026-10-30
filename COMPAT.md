@@ -35,8 +35,11 @@ Remotes in each: `origin` is the fork, `upstream` is jobisoft.
 - `Main` / `master` mirror upstream unchanged. Never commit to them; update
   them with `git fetch upstream` and a fast-forward push.
 - `compat` is what gets built: upstream's last release, the reviewed
-  compatibility commits from upstream pull requests, and one commit of our
-  own on top (version, `update_url`, release workflow, this file).
+  compatibility commits from upstream pull requests, and our own commits
+  on top (version, `update_url`, `homepage_url`, release workflow, this
+  file). `homepage_url` points at this fork, so the add-on manager leads to
+  the notice that the build is unofficial rather than to the upstream issue
+  tracker. `author` stays the upstream maintainer, who wrote the add-on.
 
 ## What goes into a build
 
