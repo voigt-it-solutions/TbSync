@@ -3,9 +3,9 @@
     "tbsync@jobisoft.de": {
       "updates": [
         {
-          "version": "5.3.8.3",
-          "update_info_url": "https://github.com/voigt-it-solutions/TbSync/releases/tag/compat-v5.3.8.3",
-          "update_link": "https://github.com/voigt-it-solutions/TbSync/releases/download/compat-v5.3.8.3/tbsync_5_3_8_3_atn.xpi",
+          "version": "5.3.8.4",
+          "update_info_url": "https://github.com/voigt-it-solutions/TbSync/releases/tag/compat-v5.3.8.4",
+          "update_link": "https://github.com/voigt-it-solutions/TbSync/releases/download/compat-v5.3.8.4/tbsync_5_3_8_4_atn.xpi",
           "applications": {
             "gecko": {
               "strict_min_version": "153.0",
@@ -18,9 +18,9 @@
     "eas4tbsync@jobisoft.de": {
       "updates": [
         {
-          "version": "5.3.11.3",
-          "update_info_url": "https://github.com/voigt-it-solutions/EAS-4-TbSync/releases/tag/compat-v5.3.11.3",
-          "update_link": "https://github.com/voigt-it-solutions/EAS-4-TbSync/releases/download/compat-v5.3.11.3/eas-4-tbsync_5_3_11_3_atn.xpi",
+          "version": "5.3.11.4",
+          "update_info_url": "https://github.com/voigt-it-solutions/EAS-4-TbSync/releases/tag/compat-v5.3.11.4",
+          "update_link": "https://github.com/voigt-it-solutions/EAS-4-TbSync/releases/download/compat-v5.3.11.4/eas-4-tbsync_5_3_11_4_atn.xpi",
           "applications": {
             "gecko": {
               "strict_min_version": "153.0",
