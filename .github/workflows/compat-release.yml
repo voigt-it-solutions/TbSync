@@ -47,6 +47,10 @@ jobs:
           fi
 
       - name: Test
+        # Some upstream tests assume the maintainer's timezone and fail under
+        # the runner's UTC even on the unmodified release.
+        env:
+          TZ: Europe/Berlin
         run: npm test
 
       - name: Build
