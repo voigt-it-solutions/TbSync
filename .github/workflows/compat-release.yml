@@ -1,0 +1,86 @@
+# Builds the ATN xpi for a `compat-v*` tag, attests where it came from, and
+# publishes it as a release. Installed copies find it through
+# compat-updates.json on the `compat` branch of voigt-it-solutions/TbSync.
+#
+# The same file lives in both forks; only the TEST step differs. See COMPAT.md.
+#
+# Anyone can check that a downloaded xpi was built here, from the tagged
+# commit, by this workflow:
+#
+#   gh attestation verify <file>.xpi -R voigt-it-solutions/<repo>
+
+name: compat-release
+
+on:
+  push:
+    tags: ["compat-v*"]
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+concurrency:
+  group: compat-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Tag, package.json and manifest name the same version
+        run: |
+          set -euo pipefail
+          want="${GITHUB_REF_NAME#compat-v}"
+          pkg=$(jq -r .version package.json)
+          man=$(jq -r .version src/manifest.json)
+          if [ "$want" != "$pkg" ] || [ "$want" != "$man" ]; then
+            echo "::error::tag says $want, package.json $pkg, manifest $man"
+            exit 1
+          fi
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: node build.js
+
+      - name: The xpi holds exactly the committed src/
+        run: |
+          set -euo pipefail
+          # build.js writes the version into src/manifest.json; a committed
+          # manifest that disagrees would ship something no commit contains.
+          git diff --exit-code -- src
+          xpi=$(ls dist/*_atn.xpi)
+          mkdir unpacked
+          unzip -q "$xpi" -d unpacked
+          diff -r src unpacked
+          (cd dist && sha256sum "$(basename "$xpi")" > SHA256SUMS.txt)
+          echo "XPI=$xpi" >> "$GITHUB_ENV"
+
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: ${{ env.XPI }}
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          name=$(basename "$XPI")
+          gh release create "$GITHUB_REF_NAME" "$XPI" dist/SHA256SUMS.txt \
+            --title "$GITHUB_REF_NAME" \
+            --notes "Unofficial compatibility build, not released by the upstream maintainer.
+
+          Built by this repository's \`compat-release\` workflow from commit $GITHUB_SHA. See COMPAT.md for what it contains and why.
+
+          Verify the download:
+
+              gh attestation verify $name -R $GITHUB_REPOSITORY"

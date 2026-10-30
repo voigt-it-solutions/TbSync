@@ -1,5 +1,25 @@
 # TbSync
 
+> [!IMPORTANT]
+> **This is an unofficial fork with unofficial builds.**
+>
+> It is not the official TbSync, and it is not released, reviewed or endorsed
+> by the upstream maintainer. The official project is
+> [jobisoft/TbSync](https://github.com/jobisoft/TbSync).
+>
+> The `compat` branch of this fork only carries compatibility fixes from
+> upstream pull requests, so TbSync keeps working on Thunderbird releases the
+> official version does not support yet. What a build contains and how to
+> verify a download is described in [COMPAT.md](COMPAT.md).
+>
+> - **No warranty.** The builds are provided "as is", without warranty of any
+>   kind. Liability is excluded to the extent permitted by applicable law, as
+>   set out in sections 6 and 7 of the [Mozilla Public License 2.0](LICENSE).
+> - **No support.** We do not offer support for these builds.
+> - **Do not report problems with these builds upstream.**
+> - As soon as an official release supports your Thunderbird version, use that
+>   instead.
+
 [TbSync](https://addons.thunderbird.net/addon/tbsync/) is a central user interface to manage cloud accounts and to synchronize their contact, task and calendar information with [Thunderbird](https://www.thunderbird.net/). Its main objective is to simplify the setup process for such accounts.
 
 ## Icon sources and attributions
