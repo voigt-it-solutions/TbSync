@@ -63,6 +63,9 @@ release exists for it; once one does, release the next version instead.
 
 ## Working with the user
 
+- Commit with the `compat-commit` skill (`.claude/skills/compat-commit/`,
+  mirrored in both repos). It holds the commit conventions and says which
+  commits must never be reworded.
 - Commits and tags are GPG-signed automatically; keep it that way.
 - Push branches and tags only when the user asks for it.
 - Force-pushes are left to the user: give the exact command instead.
