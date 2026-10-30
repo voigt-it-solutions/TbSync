@@ -29,9 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
 
@@ -69,7 +69,7 @@ jobs:
           (cd dist && sha256sum "$(basename "$xpi")" > SHA256SUMS.txt)
           echo "XPI=$xpi" >> "$GITHUB_ENV"
 
-      - uses: actions/attest-build-provenance@v2
+      - uses: actions/attest@v4
         with:
           subject-path: ${{ env.XPI }}
 
