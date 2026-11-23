@@ -52,6 +52,7 @@ Current state:
 | --- | --- | --- |
 | 158 | PR #824, `e7c0975f` | PR #368, `0d35ba3b` |
 | 159 | PR #826, `63e8ed05` (contains #824) | PR #371, `e136b9f6` (contains #368) |
+| 160 | none: official release 5.3.9 | none: official release 5.3.13 |
 
 **Not included:** EAS-4-TbSync PR #370 (IMAP invitation handling). It adds
 new behaviour rather than compatibility fixes and is still a draft upstream.
@@ -79,9 +80,11 @@ installed copies update.
 
 **When upstream releases:** point both entries at the official xpi (the
 GitHub release asset of jobisoft's repo) instead of ours. Installed copies
-then move to the official build, which has no `update_url`, and from there on
-receive updates from addons.thunderbird.net again. After that this fork has
-nothing left to do until the next Thunderbird release breaks compatibility.
+then move to the official build. Its manifest names upstream's own feed
+(`updates.json` on jobisoft/TbSync `Main`) as `update_url`, so from there on
+they follow upstream's GitHub releases and no longer poll this fork. After
+that this fork has nothing left to do until the next Thunderbird release
+breaks compatibility.
 
 ## Release procedure for a new Thunderbird version
 
